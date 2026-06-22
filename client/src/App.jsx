@@ -29,6 +29,10 @@ function App() {
         <Route path="/workouts" element={<Workouts token={token} />} />
         <Route path="/progress" element={<Progress token={token} />} />
         <Route path="/analytics" element={<Analytics token={token} />} />
+        <Route
+          path="/"
+          element={<Navigate to={token ? "/dashboard" : "/login"} replace />}
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

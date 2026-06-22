@@ -6,10 +6,13 @@ import { toast } from "react-toastify";
 function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const API_URL = import.meta.env.VITE_API_URL;
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (loading) return;
+    setLoading(true);
     try {
       const res = await axios.post(`${API_URL}/api/auth/login`, formData);
       localStorage.setItem("token", res.data.token);
@@ -21,6 +24,9 @@ function Login() {
         error.response?.data?.message ||
         "Login failed"
       );
+
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,7 +36,16 @@ function Login() {
         <h1 className="text-2xl font-bold mb-5">LOGIN</h1>
         <input value={formData.email} type="email" placeholder="Email" className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white mb-3 " onChange={(e) => setFormData({ ...formData, email: e.target.value, })} />
         <input value={formData.password} type="password" placeholder="Password" className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-white mb-3 " onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
-        <button className="bg-blue-600 hover:bg-blue-700 text-white w-full p-3 rounded-xl font-semibold mt-2">Login</button>
+        <button
+          type="submit"
+          disabled={loading}
+          className={`w-full p-3 rounded-xl font-semibold mt-2 transition-all ${loading
+            ? "bg-slate-600 cursor-not-allowed"
+            : "bg-blue-600 hover:bg-blue-700"
+            }`}
+        >
+          {loading ? "Loggin in..." : "Login"}
+        </button>
         <p>Don't have an account? <button onClick={() => navigate('/register')} className='text-lg cursor-pointer h-fit underline'>Register</button></p>
       </form>
     </div>
