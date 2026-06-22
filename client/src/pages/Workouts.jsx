@@ -72,8 +72,8 @@ const Workouts = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex justify-center items-center text-white text-xl">
-        Loading Workouts...
+      <div className="min-h-screen bg-slate-900 flex justify-center items-center">
+        <div className="w-16 h-16 border-[6px] border-slate-700 border-t-blue-500 rounded-full animate-spin"></div>
       </div>
     );
   }

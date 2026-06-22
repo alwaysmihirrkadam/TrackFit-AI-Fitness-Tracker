@@ -199,14 +199,13 @@ const Dashboard = ({ token }) => {
 
   if (!dashboard) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-900">
-        <div className="text-xl font-semibold animate-pulse">
-          Loading Dashboard...
-        </div>
-      </div>
-    );
+    <div className="min-h-screen bg-slate-900 flex flex-col justify-center items-center text-white">
+      <div className="text-5xl animate-bounce">🏋️</div>
+      <p className="mt-4 text-lg">Loading your fitness data...</p>
+    </div>
+  );
   }
-  
+
   return (
     <div className='pt-18 z-10'>
       <div className="min-h-screen bg-slate-900 text-white p-3 md:p-6">
