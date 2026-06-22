@@ -10,13 +10,14 @@ import {
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const getWorkouts = async () => {
     try {
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        "http://localhost:3000/api/workouts",
+        `${API_URL}/api/workouts`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -45,7 +46,7 @@ const Workouts = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(
-        `http://localhost:3000/api/workouts/deleteWorkout/${id}`,
+        `${API_URL}/api/workouts/deleteWorkout/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

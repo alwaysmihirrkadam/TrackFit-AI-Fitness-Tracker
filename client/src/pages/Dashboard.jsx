@@ -27,6 +27,7 @@ const Dashboard = ({ token }) => {
     daysPerWeek: 4,
   });
   const [workouts, setWorkouts] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleChange = (e) => {
     setPlanForm({
@@ -60,7 +61,7 @@ const Dashboard = ({ token }) => {
       setLoadingAiCoach(true);
 
       const res = await axios.get(
-        "http://localhost:3000/api/workouts/ai-coach",
+        `${API_URL}/api/workouts/ai-coach`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -81,7 +82,7 @@ const Dashboard = ({ token }) => {
 
   const getDashboard = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/workouts/dashboard", { headers: { Authorization: `Bearer ${token}`, } })
+      const res = await axios.get(`${API_URL}/api/workouts/dashboard`, { headers: { Authorization: `Bearer ${token}`, } })
       setDashboard(res.data)
     } catch (error) {
       toast.error(
@@ -92,7 +93,7 @@ const Dashboard = ({ token }) => {
   }
   const getWeeklyData = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/workouts/weekly", { headers: { Authorization: `Bearer ${token}`, } })
+      const res = await axios.get(`${API_URL}/api/workouts/weekly`, { headers: { Authorization: `Bearer ${token}`, } })
       setWeeklyData(res.data.weeklyData)
     } catch (error) {
       toast.error(
@@ -103,7 +104,7 @@ const Dashboard = ({ token }) => {
   }
   const getWorkouts = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/workouts", { headers: { Authorization: `Bearer ${token}`, } })
+      const res = await axios.get(`${API_URL}/api/workouts`, { headers: { Authorization: `Bearer ${token}`, } })
       setWorkouts(res.data.workouts)
     } catch (error) {
       toast.error(
@@ -114,7 +115,7 @@ const Dashboard = ({ token }) => {
   }
   const getRecentWorkout = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/workouts/recent", { headers: { Authorization: `Bearer ${token}`, } })
+      const res = await axios.get(`${API_URL}/api/workouts/recent`, { headers: { Authorization: `Bearer ${token}`, } })
       setRecentWorkout(res.data.workouts)
     } catch (error) {
       toast.error(
@@ -140,7 +141,7 @@ const Dashboard = ({ token }) => {
       setLoadingPlan(true);
 
       const res = await axios.post(
-        "http://localhost:3000/api/workouts/ai-plan",
+        `${API_URL}/api/workouts/ai-plan`,
         planForm,
         {
           headers: {
@@ -168,7 +169,7 @@ const Dashboard = ({ token }) => {
   const getCurrentPlan = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:3000/api/workouts/current-plan",
+        `${API_URL}/api/workouts/current-plan`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

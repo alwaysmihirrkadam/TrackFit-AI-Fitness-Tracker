@@ -5,13 +5,13 @@ import { toast } from "react-toastify";
 
 function Login() {
   const navigate = useNavigate();
-
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/login", formData);
+      const res = await axios.post(`${API_URL}/api/auth/login`, formData);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.user.name);
       toast.success("Login Successful 🎉");

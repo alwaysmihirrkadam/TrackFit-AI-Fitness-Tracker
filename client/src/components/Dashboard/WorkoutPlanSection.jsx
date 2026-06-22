@@ -12,6 +12,7 @@ const WorkoutPlanSection = ({ plan, planForm, token, refreshDashboard, refreshWe
     const [completeModal, setCompleteModal] = useState(false);
     const [selectedWorkout, setSelectedWorkout] = useState(null);
     const [showWorkoutModal, setShowWorkoutModal] = useState(false);
+    const API_URL = import.meta.env.VITE_API_URL;
 
     const refreshAll = () => {
         refreshDashboard();
@@ -31,7 +32,7 @@ const WorkoutPlanSection = ({ plan, planForm, token, refreshDashboard, refreshWe
     const getProgress = async () => {
         try {
             const res = await axios.get(
-                "http://localhost:3000/api/workouts/progress",
+                `${API_URL}/api/workouts/progress`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -57,7 +58,7 @@ const WorkoutPlanSection = ({ plan, planForm, token, refreshDashboard, refreshWe
             const duration = exerciseCount * 10;
 
             await axios.post(
-                "http://localhost:3000/api/workouts/addWorkout",
+                `${API_URL}/api/workouts/addWorkout`,
                 {
                     workoutName: selectedWorkout.day,
                     category: "AI Plan",
@@ -74,7 +75,7 @@ const WorkoutPlanSection = ({ plan, planForm, token, refreshDashboard, refreshWe
             );
 
             await axios.post(
-                "http://localhost:3000/api/workouts/complete-day",
+                `${API_URL}/api/workouts/complete-day`,
                 {
                     day: selectedWorkout.day,
                 },

@@ -12,6 +12,7 @@ export default function WorkoutModal({ isOpen, onClose, onAddWorkout }) {
         reps: '',
         weight: ''
     });
+    const API_URL = import.meta.env.VITE_API_URL;
 
     if (!isOpen) return null;
 
@@ -35,7 +36,7 @@ export default function WorkoutModal({ isOpen, onClose, onAddWorkout }) {
                 reps: Number(workoutForm.reps),
                 weight: Number(workoutForm.weight)
             };
-            const res = await axios.post("http://localhost:3000/api/workouts/addWorkout", workoutPayload, { headers: { Authorization: `Bearer ${token}` } })
+            const res = await axios.post(`${API_URL}/api/workouts/addWorkout`, workoutPayload, { headers: { Authorization: `Bearer ${token}` } })
             onAddWorkout(res.data.workout || workoutPayload);
             toast.success("Workout Added 💪");
             setWorkoutForm({ workoutName: '', category: 'Legs', duration: '', sets: '', reps: '', weight: '' });

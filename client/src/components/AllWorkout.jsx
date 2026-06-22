@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 const RecentWorkout = ({ data, onDeleteWorkout }) => {
     // State to track whether we are viewing 'recent' or 'all' workouts
     const [viewMode, setViewMode] = useState('recent');
+    const API_URL = import.meta.env.VITE_API_URL;
 
     // 1. 🔥 FIX: Reverse data copy so that the newest logged workouts are always at index 0
     const sortedData = [...data].sort(
@@ -22,7 +23,7 @@ const RecentWorkout = ({ data, onDeleteWorkout }) => {
         if (window.confirm("Are you sure you want to delete this workout log?")) {
             try {
                 const token = localStorage.getItem("token");
-                await axios.delete(`http://localhost:3000/api/workouts/deleteWorkout/${workoutId}`, {
+                await axios.delete(`${API_URL}/api/workouts/deleteWorkout/${workoutId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 toast.success("Workout Deleted!!");

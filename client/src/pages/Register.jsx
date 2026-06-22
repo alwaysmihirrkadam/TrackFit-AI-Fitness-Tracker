@@ -6,11 +6,12 @@ import { toast } from "react-toastify";
 function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: "", email: "", password: "", age: "" });
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/register", formData);
+      const res = await axios.post(`${API_URL}/api/auth/register`, formData);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.user.name);
       toast.success("Account Created Successfully 🎉");

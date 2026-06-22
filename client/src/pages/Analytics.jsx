@@ -11,6 +11,7 @@ import {
 const Analytics = ({ token }) => {
   const [dashboard, setDashboard] = useState(null);
   const [weeklyData, setWeeklyData] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const COLORS = [
     "#3b82f6",
@@ -24,7 +25,7 @@ const Analytics = ({ token }) => {
   const getData = async () => {
     try {
       const dashboardRes = await axios.get(
-        "http://localhost:3000/api/workouts/dashboard",
+        "${API_URL}/api/workouts/dashboard",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -33,7 +34,7 @@ const Analytics = ({ token }) => {
       );
 
       const weeklyRes = await axios.get(
-        "http://localhost:3000/api/workouts/weekly",
+        `${API_URL}/api/workouts/weekly`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
