@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function Register() {
+function Register({token}) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: "", email: "", password: "", age: "" });
   const [loading, setLoading] = useState(false);

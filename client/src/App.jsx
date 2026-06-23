@@ -32,8 +32,8 @@ function App() {
           path="/"
           element={<Navigate to={token ? "/dashboard" : "/login"} replace />}
         />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route token={token} path="/login" element={<Login />} />
+        <Route token={token} path="/register" element={<Register />} />
       </Routes>
 
     </BrowserRouter>
