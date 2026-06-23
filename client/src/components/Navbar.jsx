@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
+import { toast } from "react-toastify";
 
 const Navbar = ({ token, user_name }) => {
   const navigate = useNavigate();
