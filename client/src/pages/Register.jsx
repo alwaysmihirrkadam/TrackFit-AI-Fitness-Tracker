@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function Register({token}) {
+function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: "", email: "", password: "", age: "" });
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ function Register({token}) {
         `${API_URL}/api/auth/register`,
         formData
       );      
-      console.log("Sending token:", token);
+      console.log("Sending token:", res.data.token);
       console.log(res.data);
       console.log(res.data.token);
       localStorage.setItem("token", res.data.token);

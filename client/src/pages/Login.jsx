@@ -15,7 +15,7 @@ function Login({token}) {
     setLoading(true);
     try {
       const res = await axios.post(`${API_URL}/api/auth/login`, formData);
-      console.log("Sending token:", token);
+      console.log("Sending token:", res.data.token);
       console.log(res.data);
       console.log(res.data.token);
       localStorage.setItem("token", res.data.token);
