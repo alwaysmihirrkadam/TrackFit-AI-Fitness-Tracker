@@ -59,7 +59,7 @@ const Dashboard = ({ token }) => {
     if (loadingAiCoach) return;
     try {
       setLoadingAiCoach(true);
-
+      console.log("Sending token:", token);
       const res = await axios.get(
         `${API_URL}/api/workouts/ai-coach`,
         {
