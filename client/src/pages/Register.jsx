@@ -17,7 +17,8 @@ function Register() {
       const res = await axios.post(
         `${API_URL}/api/auth/register`,
         formData
-      );
+      );      
+      console.log("Sending token:", token);
       console.log(res.data);
       console.log(res.data.token);
       localStorage.setItem("token", res.data.token);
