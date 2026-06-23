@@ -17,7 +17,7 @@ const Navbar = ({ token, user_name }) => {
     toast.success("Logged Out Successfully");
 
     setTimeout(() => {
-      navigate("/login");
+      navigate("/");
       window.location.reload();
     }, 1000);
   };
