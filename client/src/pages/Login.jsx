@@ -15,6 +15,8 @@ function Login() {
     setLoading(true);
     try {
       const res = await axios.post(`${API_URL}/api/auth/login`, formData);
+      console.log(res.data);
+      console.log(res.data.token);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.user.name);
       toast.success("Login Successful 🎉");

@@ -68,7 +68,7 @@ const Dashboard = ({ token }) => {
           },
         }
       );
-
+      console.log("Dashboard Token", token)
       setAiData(res.data.aiData);
     } catch (error) {
       toast.error(

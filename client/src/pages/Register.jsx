@@ -18,12 +18,11 @@ function Register() {
         `${API_URL}/api/auth/register`,
         formData
       );
-
+      console.log(res.data);
+      console.log(res.data.token);
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("username", res.data.user.name);
-
       toast.success("Account Created Successfully 🎉");
-
       navigate("/dashboard");
     } catch (error) {
       toast.error(
@@ -47,8 +46,8 @@ function Register() {
           type="submit"
           disabled={loading}
           className={`w-full p-3 rounded-xl font-semibold mt-2 transition-all ${loading
-              ? "bg-slate-600 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700"
+            ? "bg-slate-600 cursor-not-allowed"
+            : "bg-blue-600 hover:bg-blue-700"
             }`}
         >
           {loading ? "Creating Account..." : "Register"}
